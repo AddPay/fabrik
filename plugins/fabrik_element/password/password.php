@@ -59,11 +59,7 @@ class PlgFabrik_ElementPassword extends PlgFabrik_Element
 	public function storeDatabaseFormat($val, $data)
 	{
 		jimport('joomla.user.helper');
-		$salt  = JUserHelper::genRandomPassword(32);
-		$crypt = JUserHelper::getCryptedPassword($val, $salt);
-		$val   = $crypt . ':' . $salt;
-
-		return $val;
+		return JUserHelper::hashPassword($val);
 	}
 
 	/**
